@@ -14,7 +14,7 @@ const Banner = () => {
     <div className="space-y-5">
       <h1 className="text-5xl font-bold">Books to freshen up <br />your bookshelf</h1>
      
-      <button className="btn btn-primary">View The List</button>
+      <button className="btn btn-success text-white mt-4">View The List</button>
     </div>
   </div>
 </div>
