@@ -1,9 +1,13 @@
 import  { useContext, useEffect, useState } from "react";
-import { BookContext } from "../../context/BookContext";
+
 import BookCard from "../ui/BookCard";
+import { BookContext } from "../../Context/BookContext";
 
 const ListedReadList = ({ sortingType }) => {
-  const { readList } = useContext(BookContext);
+ const {readList} = useContext(BookContext)
+  const data = useContext(BookContext);
+  console.log(data)
+  console.log(readList)
   const [filteredReadList, setFilteredReadList] = useState(readList);
 
   console.log(filteredReadList, "filteredReadList");

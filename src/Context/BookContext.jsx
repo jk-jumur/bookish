@@ -1,5 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { addReadListToLocalDB, getAllReadListFromLocalDB } from "../utils/localDB";
 
 
 // 1. Initialize context with null or an empty object
@@ -7,10 +8,18 @@ export const BookContext = createContext();
 
 // 2. Destructure lowercase 'children' from the props
 const BookProvider = ({ children }) => {
-    const [readList, setReadList] = useState([]);
+    const [readList, setReadList] = useState(() => getAllReadListFromLocalDB());
     const [wishList, setWishList] = useState([])
 
+//     useEffect(() => {
+//         const getReadListFromLocalDB = getAllReadListFromLocalDB()
+//         console.log(getReadListFromLocalDB, "getReadListFromLocalDB")
+//         setReadList(getReadListFromLocalDB)
+//     }, [])
+
     const handleMarkAsRead = (currentBook) => {
+
+        addReadListToLocalDB(currentBook)
         const isExistBook = readList.find(book => book.bookId === currentBook.bookId);
 
         if (isExistBook) {
@@ -19,7 +28,7 @@ const BookProvider = ({ children }) => {
             setReadList([...readList, currentBook]);
             toast.success(`${currentBook.bookName} is added to the read list`);
         }
-        console.log(currentBook, readList, "book");
+        console.log(currentBook, readList, "readList");
     };
 
       
@@ -40,7 +49,7 @@ const BookProvider = ({ children }) => {
             setWishList([...wishList, currentBook]);
             toast.success(`${currentBook.bookName} is added to the wish list`);
         }
-        console.log(currentBook, readList, "book");
+        console.log(currentBook, wishList, "wishList");
          
     };
     const data = {
@@ -51,6 +60,7 @@ const BookProvider = ({ children }) => {
         setWishList,
         handleWishList
     };
+    console.log(readList)
 
     // 3. Render lowercase 'children' here
     return (

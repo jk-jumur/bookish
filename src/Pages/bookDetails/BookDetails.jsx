@@ -13,7 +13,7 @@ const BookDetails = () => {
 
 
     const books = useLoaderData();
-    console.log( typeof books, "books");
+    console.log(  books, "books");
        const expectedBook = books.find((book) => book.bookId === Number(booksParamsId))
     console.log(expectedBook, "expectedBook");
 
@@ -23,7 +23,9 @@ const BookDetails = () => {
     //     console.log(books, "books")
 
      const {handleMarkAsRead,  handleWishList} = useContext(BookContext)
-     console.log(handleMarkAsRead,"bookContext");
+     const {readList} = useContext(BookContext)
+     console.log(readList)
+    
 
 
     
