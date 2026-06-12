@@ -6,26 +6,26 @@ export const BookContext = createContext();
 
 // 2. Destructure lowercase 'children' from the props
 const BookProvider = ({ children }) => {
-    const [storedBooks, setStoredBooks] = useState([]);
+    const [readBooks, setReadBooks] = useState([]);
     const [wishList, setWishList] = useState([])
 
     const handleMarkAsRead = (currentBook) => {
-        const isExistBook = storedBooks.find(book => book.bookId === currentBook.bookId);
+        const isExistBook = readBooks.find(book => book.bookId === currentBook.bookId);
 
         if (isExistBook) {
             toast.error("The book already exists");
         } else {
-            setStoredBooks([...storedBooks, currentBook]);
+            setReadBooks([...readBooks, currentBook]);
             toast.success(`${currentBook.bookName} is added to the read list`);
         }
-        console.log(currentBook, storedBooks, "book");
+        console.log(currentBook, readBooks, "book");
     };
 
       
 
     const handleWishList = (currentBook) => {
 
-       const isExistInReadList = storedBooks.find((book) => book.bookId === currentBook.bookId)
+       const isExistInReadList = readBooks.find((book) => book.bookId === currentBook.bookId)
 
          if(isExistInReadList){
             toast.error("The book is already in read list");
@@ -39,12 +39,12 @@ const BookProvider = ({ children }) => {
             setWishList([...wishList, currentBook]);
             toast.success(`${currentBook.bookName} is added to the wish list`);
         }
-        console.log(currentBook, storedBooks, "book");
+        console.log(currentBook, readBooks, "book");
          
     };
     const data = {
-        storedBooks,
-        setStoredBooks,
+        readBooks,
+        setReadBooks,
         handleMarkAsRead,
         wishList,
         setWishList,
