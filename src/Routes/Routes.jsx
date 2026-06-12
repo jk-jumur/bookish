@@ -20,11 +20,11 @@ import BookDetails from "../Pages/bookDetails/BookDetails";
             Component: Books
 
           },
-           {
-             path: "/bookDetails/:bookId",
-             Component: BookDetails,
-             loader: () => fetch("/booksData.json")
-          }
+             {
+        path: "/bookDetails/:bookId",
+        Component: BookDetails,
+        loader: () => fetch("/booksData.json"),
+      },
         
       ],
 
